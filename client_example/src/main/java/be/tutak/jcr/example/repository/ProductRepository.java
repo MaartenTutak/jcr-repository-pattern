@@ -27,6 +27,17 @@ public class ProductRepository implements CrudRepository<ProductEntity> {
     @Reference(target = "component.name=be.tutak.jcr.impl.DefaultBucketStrategy")
     private BucketStrategy bucketStrategy;
 
+    /**
+     * Default constructor - required by ???
+     */
+    public ProductRepository() {
+    }
+
+    public ProductRepository(CrudRepository<Resource> repository, BucketStrategy bucketStrategy) {
+        this.repository = repository;
+        this.bucketStrategy = bucketStrategy;
+    }
+
     @Override
     public void create(ProductEntity item) {
 
@@ -36,12 +47,10 @@ public class ProductRepository implements CrudRepository<ProductEntity> {
     public Optional<ProductEntity> read(String id) {
         Optional<ProductEntity> productEntity;
         String itemPath = bucketStrategy.determinePath(PRODUCT_ROOT_PATH, id);
+
         Optional<Resource> productResource = repository.read(itemPath);
-
-        //TODO Sling model validation
-
         if(productResource.isPresent()) {
-            productEntity = Optional.of(productResource.get().adaptTo(ProductEntity.class));
+            productEntity = Optional.ofNullable(productResource.get().adaptTo(ProductEntity.class));
         } else {
             productEntity = Optional.empty();
         }
