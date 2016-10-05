@@ -1,8 +1,7 @@
-package be.tutak.jcr.specs
+package be.tutak.jcr.example.repository
 
 import be.tutak.jcr.api.CrudRepository
 import be.tutak.jcr.example.entity.ProductEntity
-import be.tutak.jcr.example.repository.ProductRepository
 import be.tutak.jcr.impl.DefaultBucketStrategy
 import be.tutak.jcr.impl.JcrCrudRepository
 import be.tutak.jcr.impl.JcrInteraction
@@ -19,7 +18,7 @@ class ProductRepositorySpec extends ProsperSpec {
         nodeBuilder.etc {
             commerce {
                 product {
-                    "123456"("nt:unstructured", "sku": 11111)
+                    "123456"("nt:unstructured", "sku": 123456)
                 }
             }
         }
@@ -27,6 +26,7 @@ class ProductRepositorySpec extends ProsperSpec {
 
     def "retrieve product 123456 via the ProductRepository" () {
         setup:
+        slingContext.addModelsForPackage("be.tutak.jcr.example.entity")
         def ResourceResolverFactory resourceResolverFactory = Mock(ResourceResolverFactory)
         def JcrInteraction interaction = new JcrInteraction(resourceResolverFactory);
         def CrudRepository<Resource> jcrRepo = new JcrCrudRepository(interaction);
@@ -39,6 +39,6 @@ class ProductRepositorySpec extends ProsperSpec {
 
         then:
         entity.isPresent()
-        entity.get().sku == "11111";
+        entity.get().sku == "123456";
     }
 }

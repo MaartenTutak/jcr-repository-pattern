@@ -25,7 +25,6 @@
                 <configuration>
                     <instructions>
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-                        <Sling-Model-Packages>be.tutak.jcr.example.entity</Sling-Model-Packages>
                         <Private-Package>
                             be.tutak.jcr.impl.*
                         </Private-Package>
