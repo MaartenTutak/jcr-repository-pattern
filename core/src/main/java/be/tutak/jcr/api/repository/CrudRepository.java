@@ -1,4 +1,4 @@
-package be.tutak.jcr.api;
+package be.tutak.jcr.api.repository;
 
 import java.util.List;
 import java.util.Optional;

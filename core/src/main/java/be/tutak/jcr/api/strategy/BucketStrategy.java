@@ -1,4 +1,4 @@
-package be.tutak.jcr.api;
+package be.tutak.jcr.api.strategy;
 
 /**
  * Created by maarten on 28.09.16.

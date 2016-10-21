@@ -1,6 +1,6 @@
 package be.tutak.jcr.impl;
 
-import be.tutak.jcr.api.BucketStrategy;
+import be.tutak.jcr.api.strategy.BucketStrategy;
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Service;
 

@@ -1,4 +1,4 @@
-package be.tutak.jcr.api;
+package be.tutak.jcr.api.interaction;
 
 /**
  * Created by maarten on 28.09.16.
